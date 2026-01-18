@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ルーレットアプリ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ルーレット</h1>
+        
+        <div class="roulette-section">
+            <div class="roulette-display">
+                <div class="roulette-item" id="rouletteItem">選択肢1</div>
+            </div>
+            
+            <div class="button-group">
+                <button id="startBtn" class="control-button start">スタート</button>
+                <button id="stopBtn" class="control-button stop" disabled>ストップ</button>
+            </div>
+        </div>
+        
+        <div class="result-section">
+            <p>結果: <span id="result">-</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
