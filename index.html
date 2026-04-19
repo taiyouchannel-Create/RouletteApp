@@ -7,8 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
+    
+
     <div class="container">
-        <h1>ルーレット</h1>
+        <div class="items-section">
+           <h2>選択肢を追加</h2>
+           <input type="text" id="itemInput" placeholder="選択肢を入力"> 
+            <button id="addItemBtn">追加</button>
+
+            <ul id="itemsList"></ul>
+        </div>
+
+        <div class="accordion-itemsList">
+           <div class="accordion-header" id="accordionHeader">
+             ▶ 選択肢リスト(0件)
+           </div>
+            <ul class="accordion-list" id = "itemsList"></ul>
+
+        </div>
+
+        <h1>ルーレット画面</h1>
         
         <div class="roulette-section">
             <div class="roulette-display">
