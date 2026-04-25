@@ -9,24 +9,8 @@
 <body>
     
     
-
+    <!--ルーレットメイン画面-->
     <div class="container">
-        <div class="items-section">
-           <h2>選択肢を追加</h2>
-           <input type="text" id="itemInput" placeholder="選択肢を入力"> 
-            <button id="addItemBtn">追加</button>
-
-            <ul id="itemsList"></ul>
-        </div>
-
-        <div class="accordion-itemsList">
-           <div class="accordion-header" id="accordionHeader">
-             ▶ 選択肢リスト(0件)
-           </div>
-            <ul class="accordion-list" id = "itemsList"></ul>
-
-        </div>
-
         <h1>ルーレット画面</h1>
         
         <div class="roulette-section">
@@ -42,6 +26,29 @@
         
         <div class="result-section">
             <p>結果: <span id="result">-</span></p>
+        </div>
+    </div>
+
+
+    <!--設定画面-->
+    <div class="container-setting">
+
+        <div class="setting-screen">
+            <div class="items-section">
+            <h2>選択肢を追加</h2>
+            <input type="text" id="itemInput" placeholder="選択肢を入力"> 
+                <button id="addItemBtn">追加</button>
+
+                <ul id="itemsList"></ul>
+            </div>
+
+            <div class="accordion-itemsList">
+             <div class="accordion-header" id="accordionHeader">
+                ▶ 選択肢リスト(0件)
+             </div>
+                <ul class="accordion-list" id = "itemsList"></ul>
+
+            </div>
         </div>
     </div>
 

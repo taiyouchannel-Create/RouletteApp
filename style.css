@@ -4,27 +4,30 @@
     box-sizing: border-box;
 }
 
+/*画面全体の設定(背景)*/
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #4a90e2 0%, #1d6fd8 100%);
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.container {
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    text-align: center;
 }
 
 h1 {
     margin-bottom: 30px;
     color: #333;
+}
+
+/*メイン画面設定*/
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    text-align: center;
 }
 
 .roulette-section {
@@ -90,7 +93,7 @@ h1 {
 }
 
 .control-button.stop {
-    background: linear-gradient(135deg, #ef9a9a 0%, #e57373 100%);
+    background: linear-gradient(135deg, #ef9a9a 0%, #ec4545 100%);
     box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
 }
 
@@ -125,3 +128,50 @@ h1 {
     color: #667eea;
     font-size: 24px;
 }
+
+/*設定画面デザイン*/
+.container-setting{
+    padding-top: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.setting-screen{
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    text-align: center;
+}
+
+.accordion-header{
+    background-color: #EFF6FF;  /* 薄い青背景 */
+    color: #1E3A5F;             /* 濃紺文字 */
+    padding: 12px 16px;
+    border: 2px solid #4A90E2;  /* 青ボーダー */
+    border-radius: 8px;
+    cursor: pointer;            /* クリックできると示す */
+    user-select: none;      
+}
+
+.accordion-header:hover{
+    background-color: #DBEAFE;
+    
+}
+
+.accordion-list{
+    display:none;
+    border: 1px solid #DBEAFE;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 8px 0;
+    background-color: #FFFFFF;
+}
+
+.accordion-list.open{
+    display:block; /*openクラスがついたら表示*/
+}
+
+

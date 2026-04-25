@@ -1,7 +1,8 @@
 //ルーレットの選択肢操作
 const itemInput = document.getElementById('itemInput');
 const addItemBtn = document.getElementById('addItemBtn');
-const itemList = document.getElementById('itemsList');
+const itemsList = document.getElementById('itemsList');
+const accordion = document.getElementById('accordionHeader');
 
 // ルーレットの動作操作
 const rouletteItem = document.getElementById('rouletteItem');
@@ -17,18 +18,25 @@ addItemBtn.addEventListener('click', () => {
     const newItem = itemInput.value.trim();
 
 
-    //アラートのreturnはいる？
+    //未入力対応
     if(newItem==''){
         alert('選択肢を入力してください');
         return;
     }
 
-    items.push(newItem);
+    itemsList.push(newItem);
     updateItemList();
 
     renderItems();
 });
 
+//追加項目の表示
+accordion.addEventListener('click',
+() => {itemsList.classList.toggle('open');
+});
+
+
+//ルーレット起動処理
 let isRunning = false;
 let currentIndex = 0;
 let animationInterval;
@@ -44,7 +52,7 @@ function startRoulette() {
     stopBtn.disabled = false;
     resultDisplay.textContent = '-';
 
-    // 高速で切り替え（50ミリ秒ごと）   選択肢1~6を連続で表示
+    // 高速で切り替え（50ミリ秒ごと）   選択肢1~を連続で表示
     animationInterval = setInterval(() => {
         currentIndex = (currentIndex + 1) % items.length;
         rouletteItem.textContent = items[currentIndex];
