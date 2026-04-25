@@ -146,32 +146,61 @@ h1 {
     text-align: center;
 }
 
-.accordion-header{
-    background-color: #EFF6FF;  /* 薄い青背景 */
-    color: #1E3A5F;             /* 濃紺文字 */
-    padding: 12px 16px;
-    border: 2px solid #4A90E2;  /* 青ボーダー */
-    border-radius: 8px;
-    cursor: pointer;            /* クリックできると示す */
-    user-select: none;      
+#itemsList {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
 }
 
-.accordion-header:hover{
-    background-color: #DBEAFE;
+#itemsList li {
+    display: flex;        /* 横並び */
+    align-items: center;  /* 縦中央揃え */
+    gap: 8px;             /* 入力欄と×ボタンの隙間 */
+    margin-bottom: 8px;
+}
+
+#itemsList input {
+    flex: 1;              /* 入力欄を伸ばす */
+    padding: 8px 12px;
+    border: 2px solid #4A90E2;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+#itemsList input:focus {
+    border-color: #1D6FD8;  /* フォーカス時に濃い青 */
+}
+
+/*削除ボタン表示*/
+.delete-btn {
+    background: none;
+    border: none;
+    color: #E57373;      /* 落ち着いた赤 */
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.delete-btn:hover {
+    background-color: #FFEBEE;  /* 薄い赤背景 */
+}
+
+#addItemBtn {
+    background: none;
+    border: none;
+    color: #1a1a1a;        /* 黒文字 */
+    font-size: 15px;
+    font-weight:bold;
+    cursor: pointer;
+    padding: 4px 0;
+    display:block;          /*左寄せのためblock化*/
+    text-align: left;       /*左寄せ*/
     
 }
 
-.accordion-list{
-    display:none;
-    border: 1px solid #DBEAFE;
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    padding: 8px 0;
-    background-color: #FFFFFF;
+#addItemBtn:hover {
+    color: #4A90E2;        /* ホバーで青く */
 }
-
-.accordion-list.open{
-    display:block; /*openクラスがついたら表示*/
-}
-
 

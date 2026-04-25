@@ -2,7 +2,7 @@
 const itemInput = document.getElementById('itemInput');
 const addItemBtn = document.getElementById('addItemBtn');
 const itemsList = document.getElementById('itemsList');
-const accordion = document.getElementById('accordionHeader');
+
 
 // ルーレットの動作操作
 const rouletteItem = document.getElementById('rouletteItem');
@@ -13,30 +13,15 @@ const resultDisplay = document.getElementById('result');
 // デフォルトの選択肢
 const items = ['選択肢1', '選択肢2', '選択肢3'];
 
-//ボタンによる選択肢の追加
-addItemBtn.addEventListener('click', () => {
-    const newItem = itemInput.value.trim();
 
-
-    //未入力対応
-    if(newItem==''){
-        alert('選択肢を入力してください');
-        return;
-    }
-
-    itemsList.push(newItem);
-    updateItemList();
-
-    renderItems();
-});
-
-//追加項目の表示
-accordion.addEventListener('click',
-() => {itemsList.classList.toggle('open');
+// ページ読み込み時に初期状態を設定
+window.addEventListener('DOMContentLoaded', () => {
+    rouletteItem.textContent = items[0];
 });
 
 
-//ルーレット起動処理
+
+//ルーレット設定
 let isRunning = false;
 let currentIndex = 0;
 let animationInterval;
@@ -64,7 +49,7 @@ function stopRoulette() {
 
     clearInterval(animationInterval);
 
-    // 余慶を減速させるアニメーション　
+    // 減速させるアニメーション　
     let slowDownSpeed = 50;
     const slowDownInterval = setInterval(() => {
         slowDownSpeed += 20;
@@ -88,7 +73,22 @@ function finishRoulette() {
     resultDisplay.textContent = selectedItem;
 }
 
-// ページ読み込み時に初期状態を設定
-window.addEventListener('DOMContentLoaded', () => {
-    rouletteItem.textContent = items[0];
+//ボタンによる選択肢の追加
+addItemBtn.addEventListener('click', () => {
+    const li = document.createElement('li');
+    const input = document.createElement('input');
+    input.type = 'text'
+    input.placeholder = '選択肢を入力'
+
+    updateItemList();//おそらく入力したときのEventListner内に入れるやつやこれ
+
 });
+
+
+//itemsの中身を全部、表示する
+function updateItemList(){
+    itemsList.innerHTML = '';  //リストを空にする
+    
+}
+
+
