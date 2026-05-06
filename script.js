@@ -11,7 +11,7 @@ const stopBtn = document.getElementById('stopBtn');
 const resultDisplay = document.getElementById('result');
 
 // デフォルトの選択肢
-const items = ['選択肢1', '選択肢2', '選択肢3'];
+let items = ['選択肢1', '選択肢2', '選択肢3'];
 
 
 // ページ読み込み時に初期状態を設定
@@ -136,13 +136,14 @@ function DeleteButton(){
 
     const targetLi = this.parentElement;    //ボタンの親のliを取得
     itemsList.removeChild(targetLi);
-    updateItemList();
 
     if(itemsList.children.length == 1){
         const remainingLi = itemsList.children[0];
         const remainingBtn = remainingLi.querySelector('.delete-btn');
         remainingBtn.remove();
     }
+
+    updateItemList();
 };
 
 
@@ -150,6 +151,10 @@ function DeleteButton(){
 function updateItemList(){
     const inputs = itemsList.querySelectorAll('input');
     items = Array.from(inputs).map(input => input.value);
+
+
+    console.log('items:',items);
+    console.log(currentIndex);
 
     // currentIndexが範囲外になったらリセット
     if(currentIndex >= items.length){
