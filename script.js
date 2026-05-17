@@ -1,5 +1,4 @@
 //ルーレットの選択肢操作
-const itemInput = document.getElementById('itemInput');
 const addItemBtn = document.getElementById('addItemBtn');
 const itemsList = document.getElementById('itemsList');
 
@@ -19,24 +18,8 @@ window.addEventListener('DOMContentLoaded', () => {
     rouletteItem.textContent = items[0];
 
     for(const currentItem of items){
-        const li = document.createElement('li');
-        const input = document.createElement('input');
-        const deleteBtn = document.createElement('button');
-    
-        //選択肢のオプション
-        input.type = 'text'
-        input.placeholder = '選択肢を入力'
-        input.value = currentItem;  //デフォルトの選択肢を入力欄に表示
-        deleteBtn.textContent = '×';
-        deleteBtn.classList.add('delete-btn');
-
-        //削除ボタンのクリックイベント付与
-        deleteBtn.addEventListener('click', DeleteButton);
-        li.appendChild(input);
-        li.appendChild(deleteBtn);
+        const li = createSettingLi(currentItem);
         itemsList.appendChild(li);
-
-        
     }
 });
 
@@ -58,6 +41,11 @@ function startRoulette() {
     startBtn.disabled = true;
     stopBtn.disabled = false;
     resultDisplay.textContent = '-';
+
+    //ルーレット中は入力項目追加できないようにする
+    addItemBtn.disabled = true;
+    itemsList.querySelectorAll('input').forEach(input => input.disabled = true);
+    itemsList.querySelectorAll('.delete-btn').forEach(btn => btn.disabled = true);
 
     // 高速で切り替え（50ミリ秒ごと）   選択肢1~を連続で表示
     animationInterval = setInterval(() => {
@@ -93,23 +81,18 @@ function finishRoulette() {
     // 結果を表示
     const selectedItem = items[currentIndex];
     resultDisplay.textContent = selectedItem;
+
+
+    //入力項目の操作可能に戻す
+    addItemBtn.disabled = false;
+    itemsList.querySelectorAll('input').forEach(input => input.disabled = false);
+    itemsList.querySelectorAll('.delete-btn').forEach(btn => btn.disabled = false);
 }
 
 //ボタンによる選択肢の追加
 addItemBtn.addEventListener('click', () => {
 
-    const li = document.createElement('li');
-    const input = document.createElement('input');
-    const deleteBtn = document.createElement('button');
-    
-    //選択肢のオプション
-    input.type = 'text'
-    input.placeholder = '選択肢を入力'
-    deleteBtn.textContent = '×';
-    deleteBtn.classList.add('delete-btn');
-
-    //削除ボタンのクリックイベント付与
-    deleteBtn.addEventListener('click', DeleteButton);
+    const li = createSettingLi();
 
     //2つ以上の選択肢があるとき、削除ボタンを表示する
     if(itemsList.children.length ==1){
@@ -117,22 +100,45 @@ addItemBtn.addEventListener('click', () => {
         const firstDeleteBtn = document.createElement('button');
         firstDeleteBtn.textContent = '×';
         firstDeleteBtn.classList.add('delete-btn');
-        firstDeleteBtn.addEventListener('click',DeleteButton);
+        firstDeleteBtn.addEventListener('click',deleteButton);
 
         itemsList.children[0].appendChild(firstDeleteBtn);
     }   
     
 
-    li.appendChild(input);
-    li.appendChild(deleteBtn);
     itemsList.appendChild(li);
-    updateItemList(); 
+    
 
 });
 
 
+function createSettingLi(value = ''){
+    const li = document.createElement('li');
+    const input = document.createElement('input');
+    const deleteBtn = document.createElement('button');
+    
+    //選択肢のオプション
+    input.type = 'text'
+    input.placeholder = '選択肢を入力'
+    input.value = value;  //デフォルトの選択肢を入力欄に表示
+    deleteBtn.textContent = '×';
+    deleteBtn.classList.add('delete-btn');
 
-function DeleteButton(){
+    //入力時のイベント付与
+    input.addEventListener('input', updateItemList);
+
+    //削除ボタンのクリックイベント付与
+    deleteBtn.addEventListener('click', deleteButton);
+
+    li.appendChild(input);
+    li.appendChild(deleteBtn);
+    return li;
+
+}
+
+
+
+function deleteButton(){
 
     const targetLi = this.parentElement;    //ボタンの親のliを取得
     itemsList.removeChild(targetLi);
@@ -147,21 +153,19 @@ function DeleteButton(){
 };
 
 
-//itemsの中身を全部、表示する、おそらくここに問題があり、deleteを押しても更新されません。
+//itemsの中身を全部、表示する
 function updateItemList(){
     const inputs = itemsList.querySelectorAll('input');
     items = Array.from(inputs).map(input => input.value);
 
 
-    console.log('items:',items);
-    console.log(currentIndex);
-
-    // currentIndexが範囲外になったらリセット
+    // currentIndexが範囲外になったらリセット、ルーレット続けて処理するときに必要
     if(currentIndex >= items.length){
         currentIndex = 0;
     }
 
     rouletteItem.textContent = items[currentIndex];
 }
+
 
 

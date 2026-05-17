@@ -64,6 +64,7 @@ h1 {
     min-height: 200px;
 }
 
+/*スタートボタン・ストップボタン設定*/
 .button-group {
     display: flex;
     gap: 15px;
@@ -112,6 +113,8 @@ h1 {
     transform: scale(1);
 }
 
+
+/*結果表示*/
 .result-section {
     padding: 20px;
     background-color: #f8f9fa;
@@ -202,5 +205,26 @@ h1 {
 
 #addItemBtn:hover {
     color: #4A90E2;        /* ホバーで青く */
+}
+
+/*設定項目画面　非利用時(ルーレット起動中の表示)*/
+
+input:disabled{
+    background-color: #f0f0f0;
+    color:#aaaaaa;
+    cursor:not-allowed;
+}
+
+.delete-btn:disabled{
+    
+    color:#aaaaaa;
+    cursor:not-allowed;
+    opacity: 0.5;
+}
+
+#addItemBtn:disabled{
+    color:#aaaaaa;
+    cursor:not-allowed;
+    
 }
 
